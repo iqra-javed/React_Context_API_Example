@@ -17,11 +17,11 @@ class App extends React.Component {
           <i
             className='flag us'
             onClick={() => this.onLanguageChange('english')}
-          ></i>
+          />
           <i
             className='flag nl'
             onClick={() => this.onLanguageChange('dutch')}
-          ></i>
+          />
         </div>
         <UserCreate />
       </div>

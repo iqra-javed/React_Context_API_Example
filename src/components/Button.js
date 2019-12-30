@@ -7,7 +7,7 @@ import ColorContext from '../contexts/ColorContext';
     - this.context: used only when we are accessing a single context object inside of a component.
 */
 
-// ******** Consumer approach fro getting data out of context object ********
+// ******** Consumer approach fro getting data out of context object(s) ********
 
 class Button extends React.Component {
 
@@ -21,7 +21,7 @@ class Button extends React.Component {
       <button className={`ui button ${color}`}>
         <LanguageContext.Consumer>
           {/* when using a Consumer, we always pass a function as a child. The Consumer will 
-        automatically call this function with the current value that is inside our pipe as it's first argument*/}
+        automatically call this function with the current value that is inside our pipe as it's first argument */}
           {value => this.renderSubmit(value)}
         </LanguageContext.Consumer>
       </button>

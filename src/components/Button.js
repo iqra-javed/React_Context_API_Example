@@ -10,21 +10,27 @@ import ColorContext from '../contexts/ColorContext';
 // ******** Consumer approach fro getting data out of context object ********
 
 class Button extends React.Component {
+
+  // helper functions   
   renderSubmit(value) {
     return value === 'english' ? 'Submit' : 'Voorleggen';
+  }
+
+  renderButton(color) {
+    return (
+      <button className={`ui button ${color}`}>
+        <LanguageContext.Consumer>
+          {/* when using a Consumer, we always pass a function as a child. The Consumer will 
+        automatically call this function with the current value that is inside our pipe as it's first argument*/}
+          {value => this.renderSubmit(value)}
+        </LanguageContext.Consumer>
+      </button>
+    );
   }
   render() {
     return (
       <ColorContext.Consumer>
-        {color => (
-          <button className={`ui button ${color}`}>
-            <LanguageContext.Consumer>
-              {/* when using a Consumer, we always pass a function as a child. The Consumer will 
-            automatically call this function with the current value that is inside our pipe as it's first argument*/}
-              {value => this.renderSubmit(value)}
-            </LanguageContext.Consumer>
-          </button>
-        )}
+        {color => this.renderButton(color)}
       </ColorContext.Consumer>
     );
   }

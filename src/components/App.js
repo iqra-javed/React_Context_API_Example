@@ -1,5 +1,6 @@
 import React from 'react';
 import UserCreate from './UserCreate';
+import LanguageContext from '../contexts/LanguageContext';
 class App extends React.Component {
   state = {
     language: 'english'
@@ -10,6 +11,7 @@ class App extends React.Component {
   };
 
   render() {
+    const { language } = this.state;
     return (
       <div className='ui container'>
         <div>
@@ -23,7 +25,13 @@ class App extends React.Component {
             onClick={() => this.onLanguageChange('dutch')}
           />
         </div>
-        <UserCreate />
+        {/* communicate the language property on state down to the Provider so the LanguageContext's 
+        default values can be updated upon user interaction */}
+        {/* Note: Each time you render out an instance of the LanguageContext Provider, 
+        a new and separate 'pipe' of information/data gets created  */}
+        <LanguageContext.Provider value={language}>
+          <UserCreate />
+        </LanguageContext.Provider>
       </div>
     );
   }

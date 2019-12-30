@@ -1,5 +1,11 @@
 import React from 'react';
 import LanguageContext from '../contexts/LanguageContext';
+import ColorContext from '../contexts/ColorContext';
+
+/* Consumer vs this.context
+    - Consumer: used any time we want to get information out of multiple context objects inside of a single component.
+    - this.context: used only when we are accessing a single context object inside of a component.
+*/
 
 // ******** Consumer approach fro getting data out of context object ********
 
@@ -9,13 +15,17 @@ class Button extends React.Component {
   }
   render() {
     return (
-      <button className='ui button primary'>
-        <LanguageContext.Consumer>
-          {/* when using a Consumer, we always pass a function as a child. The Consumer will 
+      <ColorContext.Consumer>
+        {color => (
+          <button className={`ui button ${color}`}>
+            <LanguageContext.Consumer>
+              {/* when using a Consumer, we always pass a function as a child. The Consumer will 
             automatically call this function with the current value that is inside our pipe as it's first argument*/}
-          {value => this.renderSubmit(value)}
-        </LanguageContext.Consumer>
-      </button>
+              {value => this.renderSubmit(value)}
+            </LanguageContext.Consumer>
+          </button>
+        )}
+      </ColorContext.Consumer>
     );
   }
 }

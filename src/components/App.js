@@ -1,6 +1,7 @@
 import React from 'react';
 import UserCreate from './UserCreate';
 import LanguageContext from '../contexts/LanguageContext';
+import ColorContext from '../contexts/ColorContext';
 class App extends React.Component {
   state = {
     language: 'english'
@@ -29,9 +30,11 @@ class App extends React.Component {
         default values can be updated upon user interaction */}
         {/* Note: Each time you render out an instance of the LanguageContext Provider, 
         a new and separate 'pipe' of information/data gets created  */}
-        <LanguageContext.Provider value={language}>
-          <UserCreate />
-        </LanguageContext.Provider>
+        <ColorContext.Provider value='red'>
+          <LanguageContext.Provider value={language}>
+            <UserCreate />
+          </LanguageContext.Provider>
+        </ColorContext.Provider>
       </div>
     );
   }
